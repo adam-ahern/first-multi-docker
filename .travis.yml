@@ -1,0 +1,21 @@
+sudo: required
+services:
+  - docker
+  
+before_install:
+   - docker build -t noriom42/complex-react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true noriom42/complex-react-test npm test -- --coverage
+
+after_success:
+  - docker build -t noriom42/first-multi-client ./client
+  - docker build -t noriom42/first-multi-nginx ./nginx
+  - docker build -t noriom42/first-multi-server ./server
+  - docker build -t noriom42/first-multi-worker ./worker
+  # login to docker cli
+  - echo "$DOCKER_PW" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push noriom42/first-multi-client
+  - docker push noriom42/first-multi-nginx
+  - docker push noriom42/first-multi-server
+  - docker push noriom42/first-multi-worker
