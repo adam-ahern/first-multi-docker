@@ -19,3 +19,15 @@ after_success:
   - docker push noriom42/first-multi-nginx
   - docker push noriom42/first-multi-server
   - docker push noriom42/first-multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-1"
+  app: "first-multi"
+  env: "Myebsinst-env"
+  bucket_name: "elasticbeanstalk-eu-west-1-269172279202"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_KEY"

@@ -17,7 +17,7 @@ function App() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React
+            Pushed to AWS and working!
           </a>
           <Link to="/">Home</Link>
           <Link to="/otherpage">Other Page</Link>
