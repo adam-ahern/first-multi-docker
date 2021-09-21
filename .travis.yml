@@ -23,7 +23,7 @@ after_success:
 deploy:
   provider: elasticbeanstalk
   region: "eu-west-1"
-  app: "first-multi"
+  app: "my-ebs-inst"
   env: "Myebsinst-env"
   bucket_name: "elasticbeanstalk-eu-west-1-269172279202"
   bucket_path: "docker-react"
